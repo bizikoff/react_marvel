@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types'
+
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 import MarvelService from '../../services/MarvelService';
@@ -37,7 +39,7 @@ class CharList extends Component {
 
   onCharListLoaded = (newCharList) => {
     let ended = false;
-    if(newCharList.length < 9) {
+    if (newCharList.length < 9) {
       ended = true;
     }
 
@@ -100,13 +102,17 @@ class CharList extends Component {
         <button
           className="button button__main button__long"
           disabled={newItemLoading}
-          style={{'display': charEnded ? 'none' : 'block'}}
+          style={{ 'display': charEnded ? 'none' : 'block' }}
           onClick={() => this.onRequest(offset)}>
           <div className="inner">load more</div>
         </button>
       </div>
     )
   }
+}
+
+CharList.propTypes = {
+  onCharSelected: PropTypes.func.isRequired
 }
 
 export default CharList;
